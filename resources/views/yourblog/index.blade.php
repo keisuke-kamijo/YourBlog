@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Markdown Editor</title>
+        <title>Account Page</title>
         <link rel="stylesheet" href="/assets/css/style.css">
         <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>

@@ -20,4 +20,5 @@ Route::get('yourblog','App\Http\Controllers\YourBlogController@index');
 //記事投稿フォーム
 Route::get('yourblog/editor','App\Http\Controllers\YourBlogController@editor');
 Route::post('yourblog/editor','App\Http\Controllers\YourBlogController@post');
-
+//記事表示
+Route::get('yourblog/article/{id?}','App\Http\Controllers\YourBlogController@article');

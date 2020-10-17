@@ -52,4 +52,21 @@ class YourBlogController extends Controller{
 
         return redirect('/yourblog');
     }
+    public function article(Request $request){
+        $id = $request->id;
+        $title = DB::table('articles')->where('article_id',$id)->select('title')->first()->title;
+        $tags = DB::table('article_tags')->join('tags','article_tags.tag_id','=','tags.tag_id')->where('article_id',$id)->select('name')->get();
+        $content = DB::table('articles')->where('article_id',$id)->select('content')->first()->content;
+        $content = str_replace("\r\n",'`',$content);
+        $content = str_replace("\r",'`',$content);
+        $content = str_replace("\n",'`',$content);
+        $articleData = [
+            'title' => $title,
+            'tags' => $tags,
+            'content' => $content,
+        ];
+
+        dump($articleData['content']);
+        return view('yourblog.article',['articleData'=>$articleData]);
+    }
 }
