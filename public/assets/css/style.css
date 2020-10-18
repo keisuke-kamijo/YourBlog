@@ -71,16 +71,30 @@
 }
 
 .accountInfo .topic{
+    display:flex;
+    flex-wrap: wrap;
 	margin:20px;
 	width:65%;
-	height:300px;
+	height:250px;
 	border: 0.5px solid #aaaaaa;
+}
+.accountInfo .description{
+    margin-top: 10px;
+}
+.accountInfo .tag{
+    margin: 5px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    max-height:25px;
+    color: #999999;
+    border: 0.5px solid #aaaaaa;
+    border-radius: 0.6em;
 }
 
 /*外接リサイズ*/
 .accountInfo .trim-image-to-circle {
 	margin-top:10px;
-	background-image: url("icon.jpg");
+	background-image: url("/assets/image/icon.jpg");
 	width:  160px;       /* ※縦横を同値に */
 	height: 160px;       /* ※縦横を同値に */
 	border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
@@ -88,11 +102,18 @@
 	background-size: cover;
 }
 
+.accountInfo .username{
+    margin-top:20px;
+    font-size:20px;
+}
+
 .accountInfo .articleInfo{
 	margin-top: 20px;
 	width:80%;
 	height: 40px;
-	border: 0.5px solid #aaaaaa;
+    border: 0.5px solid #aaaaaa;
+    display: flex;
+    justify-content: center;
 }
 
 .accountInfo .articles{
@@ -182,6 +203,29 @@
     color: #999999;
     border: 0.5px solid #aaaaaa;
     border-radius: 0.6em;
+}
+
+.showArticles{
+    margin-top:60px;
+    width:700px;
+    min-width:400px;
+    border: 0.5px solid #aaaaaa;
+    padding-left: 15px;
+    padding-right:15px;
+}
+
+.showArticles .article{
+    margin:10px;
+    width:90%;
+    height:100px;
+    border: 0.5px solid #aaaaaa;
+}
+.showArticles .article:hover{
+    background-color: #efefef;
+}
+.showArticles .articleTitle{
+    font-size: 30px;
+    font-weight: bold;
 }
 @media ( min-width : 600px ){
     .articleForm .flexbox {

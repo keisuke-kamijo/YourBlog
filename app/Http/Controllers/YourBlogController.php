@@ -11,7 +11,23 @@ use Illuminate\Support\Facades\Redis;
 
 class YourBlogController extends Controller{
     public function index(){
-        $items = DB::select('select * from users');
+        $id = 1;//決め打ち
+        $username = DB::table('users')->where('user_id',$id)->select('username')->first()->username;
+        $articleNum = DB::table('users')->where('user_id',$id)->count();
+        $articleIDs = DB::table('articles')->where('user_id',$id)->select('article_id')->get();
+        $tagArray = array();
+        foreach($articleIDs as $articleID){
+            $tags = DB::table('article_tags')->join('tags','article_tags.tag_id','=','tags.tag_id')->where('article_id',$articleID->article_id)->select('name')->get();
+            foreach($tags as $tag){
+                array_push($tagArray,$tag->name);
+            }
+        }
+        dump($tags);
+        $items = [
+            'username' => $username,
+            'articleNum' => $articleNum,
+            'tagArray' => $tagArray,
+        ];
         return view('yourblog.index',['items'=> $items]);
     }
     public function editor(Request $request){
@@ -66,7 +82,12 @@ class YourBlogController extends Controller{
             'content' => $content,
         ];
 
-        dump($articleData['content']);
         return view('yourblog.article',['articleData'=>$articleData]);
+    }
+
+    public function articles(Request $request){
+        $articles = DB::table('articles')->orderBy('create_time','desc')->select('article_id','title')->get();
+        //dump($articles);
+        return view('yourblog.articles',['articles'=>$articles]);
     }
 }

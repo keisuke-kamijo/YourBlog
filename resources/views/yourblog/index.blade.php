@@ -28,12 +28,20 @@
                             <p class="trim-image-to-circle">
 
                             </p>
+                            <div class="username">
+                                {{$items['username']}}
+                            </div>
                             <div class="articleInfo">
-
+                                投稿：{{$items['articleNum']}}件
                             </div>
                         </div>
                         <div class="topic">
-
+                            <div class="description">関連する話題:</div>
+                            @foreach ($items['tagArray'] as $tag)
+                            <div class="tag">
+                                {{ $tag }}
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="articles">
