@@ -22,7 +22,6 @@ class YourBlogController extends Controller{
                 array_push($tagArray,$tag->name);
             }
         }
-        dump($tags);
         $items = [
             'username' => $username,
             'articleNum' => $articleNum,

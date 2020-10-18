@@ -48,7 +48,8 @@
 }
 .accountInfo{
 	display:flex;
-	justify-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
 	flex-direction: column;
 	margin-top:50px;
 	width:70%;
@@ -70,12 +71,18 @@
 	border: 0.5px solid #aaaaaa;
 }
 
+.accountInfo .right-block{
+    display: flex;
+	flex-direction: column;
+}
+
 .accountInfo .topic{
     display:flex;
+    flex-direction: row;
     flex-wrap: wrap;
 	margin:20px;
 	width:65%;
-	height:250px;
+	height:300px;
 	border: 0.5px solid #aaaaaa;
 }
 .accountInfo .description{

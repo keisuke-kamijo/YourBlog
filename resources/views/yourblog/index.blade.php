@@ -13,12 +13,12 @@
             <nav>
                 <div class="main-nav">
                     <div class="home">blog</div>
+                    <a href="/yourblog/articles" class="myaccount">記事一覧</a>
                     <div class="search">
                         <form action="" method="post">
                             <input type="text" name="search" class="searchForm" placeholder="記事を検索">
                         </form>
                     </div>
-                    <a href="./account" class="myaccount">account</a>
                 </div>
             </nav>
             <div class="main">
@@ -43,6 +43,22 @@
                             </div>
                             @endforeach
                         </div>
+                    </div>
+                    <div class="articles">
+                        <div class="article"></div>
+                        <div class="article"></div>
+                        <div class="article"></div>
+                        <div class="article"></div>
+                        <div class="article"></div>
+                        <div class="article"></div>
+                    </div>
+                    <div class="articles">
+                        <div class="article"></div>
+                        <div class="article"></div>
+                        <div class="article"></div>
+                        <div class="article"></div>
+                        <div class="article"></div>
+                        <div class="article"></div>
                     </div>
                     <div class="articles">
                         <div class="article"></div>
