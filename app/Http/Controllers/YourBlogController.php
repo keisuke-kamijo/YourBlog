@@ -72,9 +72,9 @@ class YourBlogController extends Controller{
         $title = DB::table('articles')->where('article_id',$id)->select('title')->first()->title;
         $tags = DB::table('article_tags')->join('tags','article_tags.tag_id','=','tags.tag_id')->where('article_id',$id)->select('name')->get();
         $content = DB::table('articles')->where('article_id',$id)->select('content')->first()->content;
-        $content = str_replace("\r\n",'`',$content);
-        $content = str_replace("\r",'`',$content);
-        $content = str_replace("\n",'`',$content);
+        //$content = str_replace("\r\n",'`',$content);
+        //$content = str_replace("\r",'\\r',$content);
+        //$content = str_replace("\n",'\\n',$content);
         $articleData = [
             'title' => $title,
             'tags' => $tags,

@@ -41,9 +41,11 @@
                 el:'#app',
                 computed:{
                     convertMarkdown:function(){
-                        var content = '{{$articleData['content']}}';
-                        const replaced = content.replace(/`/g,"\r\n");
-                        return marked(replaced);
+                        var content = @json($articleData['content']);
+                        console.log(content);
+                        //const replaced = content.replace(/`/g,"\r\n");
+
+                        return marked(content);
                     }
                 }
             });
