@@ -234,6 +234,14 @@
     font-size: 30px;
     font-weight: bold;
 }
+
+.appendArticle .sendButton{
+	margin: 5px;
+	color:white;
+	background-color:#0869A0;
+	width: 100px;
+	height:30px;
+}
 @media ( min-width : 600px ){
     .articleForm .flexbox {
       display: -webkit-flex;

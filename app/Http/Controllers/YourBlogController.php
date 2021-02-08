@@ -72,9 +72,7 @@ class YourBlogController extends Controller{
         $title = DB::table('articles')->where('article_id',$id)->select('title')->first()->title;
         $tags = DB::table('article_tags')->join('tags','article_tags.tag_id','=','tags.tag_id')->where('article_id',$id)->select('name')->get();
         $content = DB::table('articles')->where('article_id',$id)->select('content')->first()->content;
-        //$content = str_replace("\r\n",'`',$content);
-        //$content = str_replace("\r",'\\r',$content);
-        //$content = str_replace("\n",'\\n',$content);
+
         $articleData = [
             'title' => $title,
             'tags' => $tags,
@@ -87,6 +85,17 @@ class YourBlogController extends Controller{
     public function articles(Request $request){
         $articles = DB::table('articles')->orderBy('create_time','desc')->select('article_id','title')->get();
         //dump($articles);
+        return view('yourblog.articles',['articles'=>$articles]);
+    }
+
+    public function lists(){
+        $lists = DB::table('lists')->select('list_id','name')->get();
+        return view('yourblog.lists',['lists'=>$lists]);
+    }
+
+    public function list_content(Request $request){
+        $id = $request->id;
+        $articles = DB::table('list_mappings')->join('articles','list_mappings.article_id','=','articles.article_id')->where('list_id',$id)->orderBy('rank')->select('list_mappings.article_id','title')->get();
         return view('yourblog.articles',['articles'=>$articles]);
     }
 }
