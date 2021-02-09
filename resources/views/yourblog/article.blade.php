@@ -32,6 +32,26 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class ="appendArticle">
+                        <input type="button" class="expansionButton" value="+" v-on:click="clickBtn" />
+                        <form action="/yourblog/article" method="post">
+                            @csrf
+                            <div v-if="isVisible">
+                                <input type="hidden" name="article_id" value = "{{$articleData['article_id']}}" />
+                                <select v-model="selected">
+                                    <option disabled value="">リストを選択</option>
+                                    @foreach ($lists as $item)
+                                    <option>
+                                        {{$item->name}}
+                                        <input type="hidden" name="list_id" value = "{{$item->list_id}}"/>
+                                    </option>
+                                    @endforeach
+                                </select>
+                                に記事を追加
+                                <input type="submit" class="sendButton" value="完了"/>
+                            </div>
+                        </form>
+                    </div>
                     <div class="mdResult" v-html="convertMarkdown"></div>
                 </div>
             </div>
@@ -39,6 +59,15 @@
         <script>
             new Vue({
                 el:'#app',
+                data:{
+                    isVisible:false,
+                    selected:""
+                },
+                methods:{
+                    clickBtn:function(){
+                        this.isVisible=!this.isVisible;
+                    }
+                },
                 computed:{
                     convertMarkdown:function(){
                         var content = @json($articleData['content']);

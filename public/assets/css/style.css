@@ -242,6 +242,29 @@
 	width: 100px;
 	height:30px;
 }
+
+.appendArticle {
+    display:flex;
+}
+.appendArticle .expansionButton{
+    margin: 5px;
+    color:black;
+    background-color:gray;
+    width: 30px;
+    height:30px;
+    border-radius: 5px;
+    border:none;
+}
+.appendArticle .sendButton{
+    margin: 5px;
+    color:white;
+    background-color:#0869A0;
+    width: 50px;
+    height:30px;
+    border-radius: 5px;
+    border:none;
+}
+
 @media ( min-width : 600px ){
     .articleForm .flexbox {
       display: -webkit-flex;

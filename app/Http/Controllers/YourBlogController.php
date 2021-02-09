@@ -73,13 +73,33 @@ class YourBlogController extends Controller{
         $tags = DB::table('article_tags')->join('tags','article_tags.tag_id','=','tags.tag_id')->where('article_id',$id)->select('name')->get();
         $content = DB::table('articles')->where('article_id',$id)->select('content')->first()->content;
 
+        $user_id = 1;
+        $lists = DB::table('lists')->where('user_id',$user_id)->select('list_id','name')->get();
+
         $articleData = [
+            'article_id' => $request->id,
             'title' => $title,
             'tags' => $tags,
             'content' => $content,
         ];
 
-        return view('yourblog.article',['articleData'=>$articleData]);
+        return view('yourblog.article',['articleData'=>$articleData,'lists'=>$lists]);
+    }
+
+    public function appendArticle(Request $request){
+        date_default_timezone_set('Asia/Tokyo');
+        $lists = DB::table('list_mappings')->orderBy('rank','desc')->where('list_id',$request->list_id)->select('rank')->first();
+        $rank=$lists->rank+1;
+        $Timestamp = date("Y-m-d h:i:s");
+        $new_record = [
+            'article_id' => $request->article_id,
+            'list_id' => $request->list_id,
+            'rank' => $rank,
+            'update_time' => $Timestamp,
+        ];
+        DB::table('list_mappings')->insert($new_record);
+
+        return redirect('/yourblog/article/'.$request->article_id);
     }
 
     public function articles(Request $request){

@@ -22,9 +22,11 @@ Route::get('yourblog/editor','App\Http\Controllers\YourBlogController@editor');
 Route::post('yourblog/editor','App\Http\Controllers\YourBlogController@post');
 //記事表示
 Route::get('yourblog/article/{id?}','App\Http\Controllers\YourBlogController@article');
+Route::post('yourblog/article','App\Http\Controllers\YourBlogController@appendArticle');
 //記事一覧
 Route::get('yourblog/articles','App\Http\Controllers\YourBlogController@articles');
 //リスト一覧
 Route::get('yourblog/lists','App\Http\Controllers\YourBlogController@lists');
 //リストの内容一覧
 Route::get('yourblog/list_content/{id?}','App\Http\Controllers\YourBlogController@list_content');
+
