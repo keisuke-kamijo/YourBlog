@@ -13,6 +13,7 @@
             <nav>
                 <div class="main-nav">
                     <a href="/yourblog/" class="home">YourBlog</a>
+                    <a href="/yourblog/addList" class="myaccount">リストを追加</a>
                     <div class="search">
                         <form action="" method="post">
                             @csrf

@@ -88,8 +88,12 @@ class YourBlogController extends Controller{
 
     public function appendArticle(Request $request){
         date_default_timezone_set('Asia/Tokyo');
-        $lists = DB::table('list_mappings')->orderBy('rank','desc')->where('list_id',$request->list_id)->select('rank')->first();
-        $rank=$lists->rank+1;
+        if(DB::table('list_mappings')->where('list_id',$request->list_id)->count()==0){
+            $rank = 1;
+        }else{
+            $lists = DB::table('list_mappings')->orderBy('rank','desc')->where('list_id',$request->list_id)->select('rank')->first();
+            $rank=$lists->rank+1;
+        }
         $Timestamp = date("Y-m-d h:i:s");
         $new_record = [
             'article_id' => $request->article_id,
@@ -116,6 +120,25 @@ class YourBlogController extends Controller{
     public function list_content(Request $request){
         $id = $request->id;
         $articles = DB::table('list_mappings')->join('articles','list_mappings.article_id','=','articles.article_id')->where('list_id',$id)->orderBy('rank')->select('list_mappings.article_id','title')->get();
-        return view('yourblog.articles',['articles'=>$articles]);
+        return view('yourblog.list_content',['articles'=>$articles,'list_id'=>$id]);
+    }
+
+    public function deleteArticleOnList(Request $request){
+        DB::table('list_mappings')->where('list_id',$request->list_id)->where('article_id',$request->article_id)->delete();
+        return redirect('/yourblog/list_content/'.$request->list_id);
+    }
+
+    public function add_list(){
+        return view('yourblog.addList');
+    }
+
+    public function create_list(Request $request){
+        $listTitle = $request->listTitle;
+        $listData = [
+            'name'=>$listTitle,
+            'user_id'=>1,
+        ];
+        DB::table('lists')->insert($listData);
+        return redirect('/yourblog/lists');
     }
 }

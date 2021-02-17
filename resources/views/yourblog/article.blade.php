@@ -72,8 +72,6 @@
                     convertMarkdown:function(){
                         var content = @json($articleData['content']);
                         console.log(content);
-                        //const replaced = content.replace(/`/g,"\r\n");
-
                         return marked(content);
                     }
                 }

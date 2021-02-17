@@ -24,11 +24,19 @@
             </nav>
             <div class="main">
                 <div class="showArticles">
-                    @foreach ($articles as $item)
-                        <div class="article" v-on:click="jumpArticle({{$item->article_id }})">
-                            <div class="articleTitle">{{ $item->title }}</div>
-                        </div>
-                    @endforeach
+                    <form action="/yourblog/list_content" method="post">
+                        @csrf
+                        <input type="hidden" name="list_id" value="{{$list_id}}">
+                        @foreach ($articles as $item)
+                            <div class ="articleWithButton">
+                                <div class="article" v-on:click="jumpArticle({{$item->article_id }})">
+                                    <div class="articleTitle">{{ $item->title }}</div>
+                                </div>
+                                <input type="hidden" name="article_id" value="{{$item->article_id}}" />
+                                <input type="submit" class="deleteButton" value="削除">
+                            </div>
+                        @endforeach
+                    </form>
                 </div>
             </div>
         </div>

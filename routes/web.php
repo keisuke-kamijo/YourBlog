@@ -29,4 +29,8 @@ Route::get('yourblog/articles','App\Http\Controllers\YourBlogController@articles
 Route::get('yourblog/lists','App\Http\Controllers\YourBlogController@lists');
 //リストの内容一覧
 Route::get('yourblog/list_content/{id?}','App\Http\Controllers\YourBlogController@list_content');
+Route::post('yourblog/list_content','App\Http\Controllers\YourBlogController@deleteArticleOnList');
+//リストの追加
+Route::get('yourblog/addList','App\Http\Controllers\YourBlogController@add_list');
+Route::post('yourblog/addList','App\Http\Controllers\YourBlogController@create_list');
 

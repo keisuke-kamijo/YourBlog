@@ -15,6 +15,7 @@
                     <div class="home">blog</div>
                     <a href="/yourblog/editor" class="myaccount">記事を書く</a>
                     <a href="/yourblog/articles" class="myaccount">記事一覧</a>
+                    <a href="/yourblog/lists" class="myaccount">リスト一覧</a>
                     <div class="search">
                         <form action="" method="post">
                             <input type="text" name="search" class="searchForm" placeholder="記事を検索">
