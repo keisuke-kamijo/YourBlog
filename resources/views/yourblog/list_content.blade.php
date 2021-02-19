@@ -24,7 +24,7 @@
             </nav>
             <div class="main">
                 <div class="showArticles">
-                    <form action="/yourblog/list_content" method="post">
+                    <form action="/yourblog/list_content" method="post" name="deleteform" onsubmit="return disp()">
                         @csrf
                         <input type="hidden" name="list_id" value="{{$list_id}}">
                         @foreach ($articles as $item)
@@ -51,5 +51,15 @@
                 }
             }
         })
+
+        function disp(){
+            if(window.confirm('この記事をリストから削除しますか?')){
+                return true;
+            } else{
+                window.alert('キャンセルされました');
+                return false;
+            }
+        }
+
     </script>
 </html>

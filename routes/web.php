@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::post('yourblog/article','App\Http\Controllers\YourBlogController@appendAr
 Route::get('yourblog/articles','App\Http\Controllers\YourBlogController@articles');
 //リスト一覧
 Route::get('yourblog/lists','App\Http\Controllers\YourBlogController@lists');
+Route::post('yourblog/lists','App\Http\Controllers\YourBlogController@delete_list');
 //リストの内容一覧
 Route::get('yourblog/list_content/{id?}','App\Http\Controllers\YourBlogController@list_content');
 Route::post('yourblog/list_content','App\Http\Controllers\YourBlogController@deleteArticleOnList');
@@ -34,3 +36,7 @@ Route::post('yourblog/list_content','App\Http\Controllers\YourBlogController@del
 Route::get('yourblog/addList','App\Http\Controllers\YourBlogController@add_list');
 Route::post('yourblog/addList','App\Http\Controllers\YourBlogController@create_list');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

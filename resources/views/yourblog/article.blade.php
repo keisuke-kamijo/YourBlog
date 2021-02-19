@@ -38,13 +38,10 @@
                             @csrf
                             <div v-if="isVisible">
                                 <input type="hidden" name="article_id" value = "{{$articleData['article_id']}}" />
-                                <select v-model="selected">
+                                <select v-model="selected" name="list_id">
                                     <option disabled value="">リストを選択</option>
                                     @foreach ($lists as $item)
-                                    <option>
-                                        {{$item->name}}
-                                        <input type="hidden" name="list_id" value = "{{$item->list_id}}"/>
-                                    </option>
+                                        <option value="{{$item->list_id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>
                                 に記事を追加

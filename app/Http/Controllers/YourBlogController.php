@@ -117,6 +117,13 @@ class YourBlogController extends Controller{
         return view('yourblog.lists',['lists'=>$lists]);
     }
 
+    public function delete_list(Request $request){
+        $list_id = $request->list_id;
+        DB::table('lists')->where('list_id',$list_id)->delete();
+        DB::table('list_mappings')->where('list_id',$list_id)->delete();
+        return redirect('/yourblog/lists');
+    }
+
     public function list_content(Request $request){
         $id = $request->id;
         $articles = DB::table('list_mappings')->join('articles','list_mappings.article_id','=','articles.article_id')->where('list_id',$id)->orderBy('rank')->select('list_mappings.article_id','title')->get();
