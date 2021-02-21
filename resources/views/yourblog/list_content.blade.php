@@ -32,8 +32,10 @@
                                 <div class="article" v-on:click="jumpArticle({{$item->article_id }})">
                                     <div class="articleTitle">{{ $item->title }}</div>
                                 </div>
-                                <input type="hidden" name="article_id" value="{{$item->article_id}}" />
-                                <input type="submit" class="deleteButton" value="削除">
+                                @if(Auth::check())
+                                    <input type="hidden" name="article_id" value="{{$item->article_id}}" />
+                                    <input type="submit" class="deleteButton" value="削除">
+                                @endif
                             </div>
                         @endforeach
                     </form>

@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 Route::get('yourblog','App\Http\Controllers\YourBlogController@index');
 //記事投稿フォーム
-Route::get('yourblog/editor','App\Http\Controllers\YourBlogController@editor');
+Route::get('yourblog/editor','App\Http\Controllers\YourBlogController@editor')->middleware('auth');
 Route::post('yourblog/editor','App\Http\Controllers\YourBlogController@post');
 //記事表示
 Route::get('yourblog/article/{id?}','App\Http\Controllers\YourBlogController@article');
@@ -33,7 +33,7 @@ Route::post('yourblog/lists','App\Http\Controllers\YourBlogController@delete_lis
 Route::get('yourblog/list_content/{id?}','App\Http\Controllers\YourBlogController@list_content');
 Route::post('yourblog/list_content','App\Http\Controllers\YourBlogController@deleteArticleOnList');
 //リストの追加
-Route::get('yourblog/addList','App\Http\Controllers\YourBlogController@add_list');
+Route::get('yourblog/addList','App\Http\Controllers\YourBlogController@add_list')->middleware('auth');
 Route::post('yourblog/addList','App\Http\Controllers\YourBlogController@create_list');
 
 

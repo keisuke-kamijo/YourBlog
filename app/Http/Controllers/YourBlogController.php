@@ -8,12 +8,13 @@ use App\Http\Requests\HelloRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Auth;
 
 class YourBlogController extends Controller{
     public function index(){
         $id = 1;//決め打ち
-        $username = DB::table('users')->where('user_id',$id)->select('username')->first()->username;
-        $articleNum = DB::table('users')->where('user_id',$id)->count();
+        $username = DB::table('users')->where('id',$id)->select('name')->first()->name;
+        $articleNum = DB::table('users')->where('id',$id)->count();
         $articleIDs = DB::table('articles')->where('user_id',$id)->select('article_id')->get();
         $tagArray = array();
         foreach($articleIDs as $articleID){
@@ -46,7 +47,6 @@ class YourBlogController extends Controller{
             'user_id' => 1,                               //ユーザID決め打ち：いずれ直すべき
         ];
         $articleNextID = DB::table('articles')->insertGetId($articleData,'article_id');
-        //DB::table('articles')->insert($articleData);
 
         $tags = $request->tags;
         $tagList = explode(' ',$tags);
@@ -56,7 +56,6 @@ class YourBlogController extends Controller{
             }else{
                 $tagData = ['name'=>$tag];
                 $tagNextID = DB::table('tags')->insertGetId($tagData,'tag_id');
-                //DB::table('tags')->insert($tagData);
             }
             $articleTagsData = [
                 'article_id' => $articleNextID,

@@ -32,8 +32,10 @@
                                 <div class="article" v-on:click="jumpListContent({{$item->list_id }})">
                                     <div class="articleTitle">{{ $item->name }}</div>
                                 </div>
-                                <input type="hidden" name="list_id" value="{{$item->list_id}}" />
-                                <input type="submit" class="deleteButton" value="削除">
+                                @if(Auth::check())
+                                    <input type="hidden" name="list_id" value="{{$item->list_id}}" />
+                                    <input type="submit" class="deleteButton" value="削除">
+                                @endif
                             </div>
                         @endforeach
                     </form>
