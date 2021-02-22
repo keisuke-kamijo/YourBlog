@@ -15,9 +15,9 @@
                     <a href="/yourblog/" class="home">YourBlog</a>
                     <a href="/yourblog/addList" class="myaccount">リストを追加</a>
                     <div class="search">
-                        <form action="" method="post">
+                        <form action="/yourblog/articles" method="get">
                             @csrf
-                            <input type="text" name="search" class="searchForm" placeholder="記事を検索">
+                            <input type="text" name="keyword" class="searchForm" placeholder="記事を検索" required>
                         </form>
                     </div>
                     <a href="./account" class="myaccount">account</a>

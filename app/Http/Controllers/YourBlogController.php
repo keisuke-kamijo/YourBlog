@@ -105,8 +105,23 @@ class YourBlogController extends Controller{
         return redirect('/yourblog/article/'.$request->article_id);
     }
 
+    public function deleteArticle(Request $request){
+        $article_id = $request->article_id;
+        DB::table('articles')->where('article_id',$article_id)->delete();
+        return redirect('/yourblog');
+    }
+
     public function articles(Request $request){
-        $articles = DB::table('articles')->orderBy('create_time','desc')->select('article_id','title')->get();
+        if(!$request->filled('keyword') && !$request->filled('tag')){
+            $articles = DB::table('articles')->orderBy('create_time','desc')->select('article_id','title')->get();
+        }elseif($request->filled('tag')){
+            $tag = $request->tag;
+            $articles = DB::table('articles')->join('article_tags','articles.article_id','=','article_tags.article_id')->join('tags','article_tags.tag_id','=','tags.tag_id')->where('tags.name',$tag)->orderBy('articles.create_time','desc')->select('articles.article_id','title')->get()->unique();
+        }elseif($request->filled('keyword')){
+            $keyword = $request->keyword;
+            $articles = DB::table('articles')->where('title','like',"%$keyword%")->orderBy('create_time','desc')->select('article_id','title')->get();
+        }
+
         //dump($articles);
         return view('yourblog.articles',['articles'=>$articles]);
     }

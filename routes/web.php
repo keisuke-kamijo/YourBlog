@@ -24,6 +24,7 @@ Route::post('yourblog/editor','App\Http\Controllers\YourBlogController@post');
 //記事表示
 Route::get('yourblog/article/{id?}','App\Http\Controllers\YourBlogController@article');
 Route::post('yourblog/article','App\Http\Controllers\YourBlogController@appendArticle');
+Route::post('yourblog/article/delete','App\Http\Controllers\YourBlogController@deleteArticle');
 //記事一覧
 Route::get('yourblog/articles','App\Http\Controllers\YourBlogController@articles');
 //リスト一覧

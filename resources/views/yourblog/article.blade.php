@@ -14,12 +14,18 @@
                 <div class="main-nav">
                     <a href="/yourblog/" class="home">YourBlog</a>
                     <div class="search">
-                        <form action="" method="post">
+                        <form action="/yourblog/articles" method="get">
                             @csrf
-                            <input type="text" name="search" class="searchForm" placeholder="記事を検索">
+                            <input type="text" name="keyword" class="searchForm" placeholder="記事を検索" required>
                         </form>
                     </div>
-                    <a href="./account" class="myaccount">account</a>
+                    <form action="/yourblog/article/delete" method="post" onsubmit="return disp()">
+                        @csrf
+                        @if(Auth::check())
+                            <input type="hidden" name="article_id" value="{{$articleData['article_id']}}"/>
+                            <input type="submit" class="deleteButton" value="記事を削除"/>
+                        @endif
+                    </form>
                 </div>
             </nav>
             <div class="main">
@@ -63,6 +69,10 @@
                 methods:{
                     clickBtn:function(){
                         this.isVisible=!this.isVisible;
+                    },
+                    searchWithTag: function(id){
+                        var link = "/yourblog/articles?tag=" + id;
+                        location.href=link;
                     }
                 },
                 computed:{
@@ -73,6 +83,15 @@
                     }
                 }
             });
+
+            function disp(){
+            if(window.confirm('この記事を削除しますか?')){
+                return true;
+            } else{
+                window.alert('キャンセルされました');
+                return false;
+            }
+        }
         </script>
     </body>
 </html>

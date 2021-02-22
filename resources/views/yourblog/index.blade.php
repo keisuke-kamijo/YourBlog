@@ -17,8 +17,9 @@
                     <a href="/yourblog/articles" class="myaccount">記事一覧</a>
                     <a href="/yourblog/lists" class="myaccount">リスト一覧</a>
                     <div class="search">
-                        <form action="" method="post">
-                            <input type="text" name="search" class="searchForm" placeholder="記事を検索">
+                        <form action="/yourblog/articles" method="get">
+                            @csrf
+                            <input type="text" name="keyword" class="searchForm" placeholder="記事を検索" required>
                         </form>
                     </div>
                 </div>
@@ -40,7 +41,7 @@
                         <div class="topic">
                             <div class="description">関連する話題:</div>
                             @foreach ($items['tagArray'] as $tag)
-                            <div class="tag">
+                            <div class="tag" v-on:click="searchWithTag('{{ $tag }}');">
                                 {{ $tag }}
                             </div>
                             @endforeach
@@ -74,4 +75,15 @@
             </div>
         </div>
     </body>
+    <script>
+        new Vue({
+            el:'#app',
+            methods:{
+                searchWithTag: function(id){
+                    var link = "/yourblog/articles?tag=" + id;
+                    location.href=link;
+                }
+            }
+        })
+    </script>
 </html>
