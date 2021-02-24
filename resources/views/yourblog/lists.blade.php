@@ -24,21 +24,24 @@
                 </div>
             </nav>
             <div class="main">
-                <div class="showArticles">
-                    <form action="/yourblog/lists" method="post" name="deleteform" onsubmit="return disp()">
-                        @csrf
-                        @foreach ($lists as $item)
-                            <div class ="articleWithButton">
-                                <div class="article" v-on:click="jumpListContent({{$item->list_id }})">
-                                    <div class="articleTitle">{{ $item->name }}</div>
+                <div class="titleAndSeries">
+                    <div class="titleOfSeries">リスト一覧</div>
+                    <div class="showArticles">
+                        <form action="/yourblog/lists" method="post" name="deleteform" onsubmit="return disp()">
+                            @csrf
+                            @foreach ($lists as $item)
+                                <div class ="articleWithButton">
+                                    <div class="article" v-on:click="jumpListContent({{$item->list_id }})">
+                                        <div class="articleTitle">{{ $item->name }}</div>
+                                    </div>
+                                    @if(Auth::check())
+                                        <input type="hidden" name="list_id" value="{{$item->list_id}}" />
+                                        <input type="submit" class="deleteButton" value="削除">
+                                    @endif
                                 </div>
-                                @if(Auth::check())
-                                    <input type="hidden" name="list_id" value="{{$item->list_id}}" />
-                                    <input type="submit" class="deleteButton" value="削除">
-                                @endif
-                            </div>
-                        @endforeach
-                    </form>
+                            @endforeach
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -140,8 +140,9 @@ class YourBlogController extends Controller{
 
     public function list_content(Request $request){
         $id = $request->id;
+        $list_name = DB::table('lists')->where('list_id',$id)->select('name')->first()->name;
         $articles = DB::table('list_mappings')->join('articles','list_mappings.article_id','=','articles.article_id')->where('list_id',$id)->orderBy('rank')->select('list_mappings.article_id','title')->get();
-        return view('yourblog.list_content',['articles'=>$articles,'list_id'=>$id]);
+        return view('yourblog.list_content',['articles'=>$articles,'list_id'=>$id ,'list_name'=>$list_name]);
     }
 
     public function deleteArticleOnList(Request $request){

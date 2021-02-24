@@ -23,22 +23,25 @@
                 </div>
             </nav>
             <div class="main">
-                <div class="showArticles">
-                    <form action="/yourblog/list_content" method="post" name="deleteform" onsubmit="return disp()">
-                        @csrf
-                        <input type="hidden" name="list_id" value="{{$list_id}}">
-                        @foreach ($articles as $item)
-                            <div class ="articleWithButton">
-                                <div class="article" v-on:click="jumpArticle({{$item->article_id }})">
-                                    <div class="articleTitle">{{ $item->title }}</div>
+                <div class="titleAndSeries">
+                    <div class="titleOfSeries">リスト：{{$list_name}}</div>
+                    <div class="showArticles">
+                        <form action="/yourblog/list_content" method="post" name="deleteform" onsubmit="return disp()">
+                            @csrf
+                            <input type="hidden" name="list_id" value="{{$list_id}}">
+                            @foreach ($articles as $item)
+                                <div class ="articleWithButton">
+                                    <div class="article" v-on:click="jumpArticle({{$item->article_id }})">
+                                        <div class="articleTitle">{{ $item->title }}</div>
+                                    </div>
+                                    @if(Auth::check())
+                                        <input type="hidden" name="article_id" value="{{$item->article_id}}" />
+                                        <input type="submit" class="deleteButton" value="削除">
+                                    @endif
                                 </div>
-                                @if(Auth::check())
-                                    <input type="hidden" name="article_id" value="{{$item->article_id}}" />
-                                    <input type="submit" class="deleteButton" value="削除">
-                                @endif
-                            </div>
-                        @endforeach
-                    </form>
+                            @endforeach
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

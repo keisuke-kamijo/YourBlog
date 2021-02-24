@@ -38,6 +38,9 @@ Route::get('yourblog/addList','App\Http\Controllers\YourBlogController@add_list'
 Route::post('yourblog/addList','App\Http\Controllers\YourBlogController@create_list');
 
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'reset'    => false,
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

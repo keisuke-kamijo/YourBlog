@@ -33,7 +33,7 @@
                     <h1 class="articleTitle">{{ $articleData['title'] }}</h1>
                     <div class="tags">
                         @foreach ($articleData['tags'] as $tag)
-                            <div class="tag">
+                            <div class="tag" v-on:click="searchWithTag('{{ $tag->name }}');">
                                 {{ $tag->name }}
                             </div>
                         @endforeach

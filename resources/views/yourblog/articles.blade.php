@@ -23,12 +23,15 @@
                 </div>
             </nav>
             <div class="main">
-                <div class="showArticles">
-                    @foreach ($articles as $item)
-                        <div class="article" v-on:click="jumpArticle({{$item->article_id }})">
-                            <div class="articleTitle">{{ $item->title }}</div>
-                        </div>
-                    @endforeach
+                <div class="titleAndSeries">
+                    <div class="titleOfSeries">記事一覧</div>
+                    <div class="showArticles">
+                        @foreach ($articles as $item)
+                            <div class="article" v-on:click="jumpArticle({{$item->article_id }})">
+                                <div class="articleTitle">{{ $item->title }}</div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

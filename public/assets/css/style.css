@@ -49,7 +49,7 @@
 }
 
 .main{
-	display:flex;
+    display:flex;
 	justify-content: center;
 }
 .accountInfo{
@@ -218,8 +218,22 @@
     border-radius: 0.6em;
 }
 
-.showArticles{
+.titleAndSeries{
+    width:700px;
+    min-width:400px;
+}
+.titleOfSeries{
     margin-top:60px;
+    width:900px;
+    min-width:400px;
+    font-size: 40px;
+    color: #777777;
+    padding-left: 15px;
+    padding-right:15px;
+}
+
+.showArticles{
+    margin-top:10px;
     width:700px;
     min-width:400px;
     border: 0.5px solid #aaaaaa;
