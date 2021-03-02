@@ -35,8 +35,7 @@
                                         <div class="articleTitle">{{ $item->name }}</div>
                                     </div>
                                     @if(Auth::check())
-                                        <input type="hidden" name="list_id" value="{{$item->list_id}}" />
-                                        <input type="submit" class="deleteButton" value="削除">
+                                        <button type="submit" class="deleteButton" name="list_id" value="{{$item->list_id}}">削除</button>
                                     @endif
                                 </div>
                             @endforeach

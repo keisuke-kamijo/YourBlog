@@ -23,6 +23,7 @@ class YourBlogController extends Controller{
                 array_push($tagArray,$tag->name);
             }
         }
+        $tagArray=array_unique($tagArray);
         $items = [
             'username' => $username,
             'articleNum' => $articleNum,
