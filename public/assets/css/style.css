@@ -326,6 +326,13 @@
     color:red;
 }
 
+.draggableArea .article{
+    cursor:grab;
+}
+.draggableArea .article:active{
+    cursor:grabbing;
+}
+
 @media ( min-width : 600px ){
     .articleForm .flexbox {
       display: -webkit-flex;

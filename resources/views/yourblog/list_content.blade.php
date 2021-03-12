@@ -19,7 +19,7 @@
                             <input type="text" name="keyword" class="searchForm" placeholder="記事を検索" required>
                         </form>
                     </div>
-                    <a href="./account" class="myaccount">account</a>
+                    <a href="/yourblog/sortList?id={{$list_id}}" class="myaccount">リストを編集</a>
                 </div>
             </nav>
             <div class="main">

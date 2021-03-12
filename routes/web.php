@@ -36,6 +36,9 @@ Route::post('yourblog/list_content','App\Http\Controllers\YourBlogController@del
 //リストの追加
 Route::get('yourblog/addList','App\Http\Controllers\YourBlogController@add_list')->middleware('auth');
 Route::post('yourblog/addList','App\Http\Controllers\YourBlogController@create_list');
+//リストの編集
+Route::get('yourblog/sortList','App\Http\Controllers\YourBlogController@sort_list')->middleware('auth');
+Route::post('yourblog/applySort','App\Http\Controllers\YourBlogController@apply_sort');
 
 
 Auth::routes([

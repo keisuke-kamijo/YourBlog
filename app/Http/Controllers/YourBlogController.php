@@ -164,4 +164,29 @@ class YourBlogController extends Controller{
         DB::table('lists')->insert($listData);
         return redirect('/yourblog/lists');
     }
+
+    public function sort_list(Request $request){
+        $id = $request->id;
+        $list_name = DB::table('lists')->where('list_id',$id)->select('name')->first()->name;
+        $articles = DB::table('list_mappings')->join('articles','list_mappings.article_id','=','articles.article_id')->where('list_id',$id)->orderBy('rank')->select('list_mappings.article_id','title')->get();
+        return view('yourblog.sortList',['articles'=>$articles,'list_id'=>$id ,'list_name'=>$list_name]);
+    }
+
+    public function apply_sort(Request $request){
+        $list_id = $request->list_id;
+
+        $article_id_array = $request->article_id_array;
+        $rank=1;
+        foreach($article_id_array as $article_id){
+            $record = [
+                'list_id' => $list_id,
+                'article_id' => $article_id,
+                'rank' => $rank,
+            ];
+            DB::table('list_mappings')->where('list_id',$list_id)->where('article_id',$article_id)->update($record);
+            $rank++;
+        }
+
+        return '/yourblog/list_content/'.$list_id;
+    }
 }
