@@ -1,3 +1,23 @@
+# Yourblog(仮名)
+## 概要
+リーディングリストを作成できる、シリーズ化された記事が追いやすいブログを開発しています。  
+リストはアカウントのホーム画面に掲載することができ、新規の読者に読んでもらいたい記事や自分が自信を持っている記事をピックアップできます。  
+これらはYouTubeから着想を得ています。
+## 環境
+- Laravel 8.10.0
+- Vue.js 2.5.17
+- Postgresql 13.1
+
+## 使い方
+現状は個人用のブログとして運営予定です。新たなアカウント作成は実装していません。
+
+## 作成者
+@Atomic_kei
+(twitter)
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
